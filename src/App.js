@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import NotificationIcon from './NotificationIcon'
 
 function App() {
+  // TODO: Replace hard-coded value with fetched result count
+  const [ notifications, setNotifications ] = useState(1)
+  
+  const handleNotificationClick = () => setNotifications(notifications + 1)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <NotificationIcon
+          count={notifications}
+          handleNotificationClick={handleNotificationClick}
+        />
+      </div>
     </div>
   );
 }
