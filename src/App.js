@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import NotificationIcon from './NotificationIcon'
 import NotificationList from './NotificationList'
-import ReleaseNotes from './releaseTest.md'
 import './App.css';
 
 function App() {
@@ -10,8 +9,7 @@ function App() {
   const [ notificationsText, setNotificationsText ] = useState("")
   
   const handleNotificationClick = async () => {
-    // TODO: Fetch the Markdown from gist
-    const text = await (await fetch(ReleaseNotes)).text()
+    const text = await (await fetch('https://gist.githubusercontent.com/grantbartone/f02d21544a4759f3f3b8704df0dfe908/raw/db19c8cf5c0ca4ff47f8f128a4d25665784c7083/releaseTest.md')).text()
     setNotificationsText(text)
     
     // TODO: Replace with notifications count
