@@ -7,16 +7,17 @@ function App() {
   const [ notificationsText, setNotificationsText ] = useState("")
   const [ notificationsCount, setNotificationsCount ] = useState(0)
   const [ showNotificationsList, setShowNotificationsList ] = useState(false)
+  const [ hideNotificationsList, setHideNotificationsList ] = useState(false)
 
   useEffect(() => {
     async function getNotificationsText() {
-      const text = await (await fetch('https://gist.githubusercontent.com/grantbartone/f02d21544a4759f3f3b8704df0dfe908/raw/db19c8cf5c0ca4ff47f8f128a4d25665784c7083/releaseTest.md')).text()
+      const text = await (await fetch('https://gist.githubusercontent.com/grantbartone/f02d21544a4759f3f3b8704df0dfe908/raw/a80068bd536f870b2579c2f2f0d9ed850b1cd4ca/releaseTest.md')).text()
       setNotificationsText(text)
     }
     getNotificationsText()
     
     const count = getNotificationCount()
-    setNotificationsCount(count)
+    setTimeout(() => setNotificationsCount(count), 1000)
   }, [])
 
   const getNotificationCount = () => {
@@ -26,7 +27,13 @@ function App() {
   
   const handleNotificationClick = () => setShowNotificationsList(true)
 
-  const handleCloseModal = () => setShowNotificationsList(false)
+  const handleCloseModal = () => {
+    setHideNotificationsList(true, setTimeout(() => {
+      // Reset showNotificationsList & hideNotificationsList states to false after dissolve
+      setShowNotificationsList(false, setHideNotificationsList(false))
+      }, 1000)
+    )
+  }
 
   return (
     <div className="App">
@@ -36,7 +43,11 @@ function App() {
           handleNotificationClick={handleNotificationClick}
         />
         {showNotificationsList && (
-          <NotificationList markdownText={notificationsText} handleCloseModal={handleCloseModal} />
+          <NotificationList
+            hide={hideNotificationsList}
+            markdownText={notificationsText}
+            handleCloseModal={handleCloseModal}
+          />
         )}
       </div>
     </div>
