@@ -55,7 +55,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="header">Welcome!</h1>
       {showNotificationsIcon && !showError && (
         <NotificationIcon
           count={notificationsCount}
@@ -66,6 +65,7 @@ function App() {
       {showNotificationsList && (
         <NotificationList
           hide={hideNotifications}
+          error={showError}
           markdownText={notificationsText}
           handleCloseModal={handleCloseModal}
         />

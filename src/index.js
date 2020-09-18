@@ -6,6 +6,8 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
+    {/* For demo purposes, this header represents the page I've added my React app on */}
+    <h1 className="header">Welcome!</h1>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
