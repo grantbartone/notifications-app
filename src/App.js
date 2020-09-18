@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     async function getNotificationsText() {
-      const response = await fetch('https://gist.githubusercontent.com/grantbartone/f02d21544a4759f3f3b8704df0dfe908/raw/a80068bd536f870b2579c2f2f0d9ed850b1cd4ca/releaseTest.md')
+      const response = await fetch('https://gist.githubusercontent.com/grantbartone/f02d21544a4759f3f3b8704df0dfe908/raw/ac521f992aeb9549e843c95933dec465a6ae726a/releaseTest.md')
       
       if (response.status !== 200) return handleError(response)
       const text = await response.text()
