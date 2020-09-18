@@ -52,21 +52,20 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        {!showError && (
-          <NotificationIcon
-            count={notificationsCount}
-            handleNotificationClick={handleNotificationClick}
-          />
-        )}
-        {showNotificationsList && (
-          <NotificationList
-            hide={hideNotificationsList}
-            markdownText={notificationsText}
-            handleCloseModal={handleCloseModal}
-          />
-        )}
-      </div>
+      <h1 className="header">Welcome!</h1>
+      {!showError && (
+        <NotificationIcon
+          count={notificationsCount}
+          handleNotificationClick={handleNotificationClick}
+        />
+      )}
+      {showNotificationsList && (
+        <NotificationList
+          hide={hideNotificationsList}
+          markdownText={notificationsText}
+          handleCloseModal={handleCloseModal}
+        />
+      )}
     </div>
   );
 }
