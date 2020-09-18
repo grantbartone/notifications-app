@@ -7,8 +7,9 @@ function App() {
   const [ notificationsText, setNotificationsText ] = useState("")
   const [ showError, setShowError ] = useState(false)
   const [ notificationsCount, setNotificationsCount ] = useState(0)
+  const [ showNotificationsIcon, setShowNotificationsIcon ] = useState(true)
   const [ showNotificationsList, setShowNotificationsList ] = useState(false)
-  const [ hideNotificationsList, setHideNotificationsList ] = useState(false)
+  const [ hideNotifications, setHideNotifications ] = useState(false)
 
   useEffect(() => {
     async function getNotificationsText() {
@@ -33,9 +34,11 @@ function App() {
   const handleNotificationClick = () => setShowNotificationsList(true)
 
   const handleCloseModal = () => {
-    setHideNotificationsList(true, setTimeout(() => {
-      // Reset showNotificationsList & hideNotificationsList states to false after dissolve
-      setShowNotificationsList(false, setHideNotificationsList(false))
+    setHideNotifications(true, setTimeout(() => {
+      // Reset hideNotifications & showNotification(List|Icon) states to false after close
+      setShowNotificationsList(false)
+      setShowNotificationsIcon(false)
+      setHideNotifications(false)
       }, 1000)
     )
   }
@@ -53,15 +56,16 @@ function App() {
   return (
     <div className="App">
       <h1 className="header">Welcome!</h1>
-      {!showError && (
+      {showNotificationsIcon && !showError && (
         <NotificationIcon
           count={notificationsCount}
+          hide={hideNotifications}
           handleNotificationClick={handleNotificationClick}
         />
       )}
       {showNotificationsList && (
         <NotificationList
-          hide={hideNotificationsList}
+          hide={hideNotifications}
           markdownText={notificationsText}
           handleCloseModal={handleCloseModal}
         />
