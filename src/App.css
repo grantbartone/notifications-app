@@ -66,6 +66,8 @@
   width: 45em;
   border: 1px solid #CCC;
   box-shadow: 3px 3px 30px 3px #CCC;
+  overflow-y: auto;
+  max-height: 70vh;
 }
 .Notification_list h1, h2 {
   margin-bottom: 30px;
